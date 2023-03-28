@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc_pattern/bloc/counter_bloc.dart';
 import 'package:flutter_bloc_pattern/pages/home_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -10,9 +12,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-      debugShowCheckedModeBanner: false,
-    );
+    return BlocProvider(
+        create: (context) => CounterBloc(),
+        child: const MaterialApp(
+          home: HomePage(),
+          debugShowCheckedModeBanner: false,
+        ));
   }
 }
